@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liujun.microservice.ddd.demo.domain.user.repository.mapper.UserInfoDAO">
+    <resultMap type="com.liujun.microservice.ddd.demo.domain.user.repository.po.UserInfoPO" id="dpClusterInfoResultMap">
+        <id property="userId" column="USERID"/>
+        <result property="userName" column="USERNAME"/>
+        <result property="password" column="PASSWORD"/>
+        <result property="message" column="MESSAGE"/>
+    </resultMap>
+
+
+    <select id="getUserInfo" parameterType="com.liujun.microservice.ddd.demo.domain.user.repository.po.UserInfoPO"
+            resultMap="dpClusterInfoResultMap">
+        select
+        userid,
+        username,
+        password,
+        message
+        from
+        userinfo
+        where
+        username = #{userName,jdbcType=VARCHAR}
+        and password = #{password,jdbcType=VARCHAR}
+    </select>
+
+
+</mapper>
