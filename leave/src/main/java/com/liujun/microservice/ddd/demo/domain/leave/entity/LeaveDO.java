@@ -1,5 +1,7 @@
 package com.liujun.microservice.ddd.demo.domain.leave.entity;
 
+import com.liujun.microservice.ddd.demo.domain.leave.constant.LeaveStatus;
+
 /**
  * 请假的领域对象
  *
@@ -14,22 +16,7 @@ public class LeaveDO {
   private String message;
 
   /** 请假的状态 */
-  private STATUS status;
-
-  public static enum STATUS {
-    INIT(1),
-    PASS(2),
-    BREAK(-1);
-    private int status;
-
-    STATUS(int status) {
-      this.status = status;
-    }
-
-    public int getStatus() {
-      return status;
-    }
-  }
+  private LeaveStatus status;
 
   public Integer getUserId() {
     return userId;
@@ -47,11 +34,11 @@ public class LeaveDO {
     this.message = message;
   }
 
-  public STATUS getStatus() {
+  public LeaveStatus getStatus() {
     return status;
   }
 
-  public void setStatus(STATUS status) {
+  public void setStatus(LeaveStatus status) {
     this.status = status;
   }
 

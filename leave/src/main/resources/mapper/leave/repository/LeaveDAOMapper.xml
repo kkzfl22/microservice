@@ -11,7 +11,7 @@
     <!--添加请假-->
     <insert id="insert" parameterType="com.liujun.microservice.ddd.demo.domain.leave.repository.po.LeavePO">
         insert into leave_message(userId,message,leaveStatus)
-        values(#{userId,jdbcType=NUMBER},#{message,jdbcType=VARCHAR},#{leaveStatus,jdbcType=NUMBER})
+        values(#{userId,jdbcType=INTEGER},#{message,jdbcType=VARCHAR},#{leaveStatus,jdbcType=INTEGER})
     </insert>
 
     <!--查询请假-->
@@ -24,8 +24,14 @@
         from
         leave_message
         where
-        userId = #{userId,jdbcType=NUMBER}
+        userId = #{userId,jdbcType=INTEGER}
     </select>
+
+    <delete id="delete" parameterType="com.liujun.microservice.ddd.demo.domain.leave.repository.po.LeavePO">
+        delete from leave_message
+         where
+         userId = #{userId,jdbcType=INTEGER}
+    </delete>
 
 
 </mapper>

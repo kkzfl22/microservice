@@ -24,5 +24,21 @@
         and password = #{password,jdbcType=VARCHAR}
     </select>
 
+    <!--插入用户信息-->
+    <insert id="insert" parameterType="com.liujun.microservice.ddd.demo.domain.user.repository.po.UserInfoPO">
+        insert into userinfo (userid,        username,        password,        message)
+        values(
+        #{userId,jdbcType=BIGINT},
+        #{userName,jdbcType=VARCHAR},
+        #{password,jdbcType=VARCHAR},
+        #{message,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <!--删除用户数据-->
+    <delete id="delete" parameterType="com.liujun.microservice.ddd.demo.domain.user.repository.po.UserInfoPO">
+        delete from userinfo where userid = #{userId,jdbcType=BIGINT}
+    </delete>
+
 
 </mapper>

@@ -26,4 +26,12 @@ public interface LeaveDAO {
    * @return 结果
    */
   List<LeavePO> query(LeavePO leavePO);
+
+  /**
+   * 数据库持久化层的删除操作
+   *
+   * @param leavePO 持久化实体
+   * @return 删除操作
+   */
+  int delete(LeavePO leavePO);
 }

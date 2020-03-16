@@ -26,4 +26,11 @@ public interface LeaveRepository {
    * @return 结果
    */
   List<LeavePO> query(LeavePO leavePO);
+
+  /**
+   * 执行数据数据库删除操作
+   * @param leavePo 数据库操作实体
+   * @return 结果
+   */
+  boolean delete(LeavePO leavePo);
 }

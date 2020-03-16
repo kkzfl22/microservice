@@ -33,4 +33,8 @@ public class LeaveRepositoryImpl implements LeaveRepository {
   public List<LeavePO> query(LeavePO leavePO) {
     return leaveDAO.query(leavePO);
   }
+
+  public boolean delete(LeavePO leavePo) {
+    return false;
+  }
 }

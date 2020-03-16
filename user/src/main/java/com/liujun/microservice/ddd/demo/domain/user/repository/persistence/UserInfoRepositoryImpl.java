@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
  * @author liujun
  */
 @Repository
-@Qualifier("userInfoRepository")
 public class UserInfoRepositoryImpl implements UserInfoRepository {
 
   /** 用户的mybatis的数据库实现操作 */
@@ -21,5 +20,28 @@ public class UserInfoRepositoryImpl implements UserInfoRepository {
 
   public UserInfoPO getUserInfo(UserInfoPO userPO) {
     return userinfoDAO.getUserInfo(userPO);
+  }
+
+  @Override
+  public boolean save(UserInfoPO userinfoPO) {
+    int rsp = userinfoDAO.insert(userinfoPO);
+
+    if (rsp > 0) {
+      return true;
+    }
+
+    return false;
+  }
+
+  @Override
+  public boolean delete(UserInfoPO userinfoPO) {
+
+    int deleteRsp = userinfoDAO.delete(userinfoPO);
+
+    if (deleteRsp > 0) {
+      return true;
+    }
+
+    return false;
   }
 }
