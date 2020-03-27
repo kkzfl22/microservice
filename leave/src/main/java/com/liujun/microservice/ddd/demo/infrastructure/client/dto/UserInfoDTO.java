@@ -1,4 +1,4 @@
-package com.liujun.microservice.ddd.demo.interfaces.dto;
+package com.liujun.microservice.ddd.demo.infrastructure.client.dto;
 
 import lombok.Data;
 import lombok.ToString;

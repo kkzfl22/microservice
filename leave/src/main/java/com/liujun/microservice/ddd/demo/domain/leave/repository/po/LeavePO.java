@@ -7,6 +7,9 @@ package com.liujun.microservice.ddd.demo.domain.leave.repository.po;
  */
 public class LeavePO {
 
+  /** 请假的id */
+  private Integer leaveId;
+
   /** 用户信息 */
   private Integer userId;
 
@@ -15,6 +18,14 @@ public class LeavePO {
 
   /** 请假状态 */
   private int leaveStatus;
+
+  public Integer getLeaveId() {
+    return leaveId;
+  }
+
+  public void setLeaveId(Integer leaveId) {
+    this.leaveId = leaveId;
+  }
 
   public Integer getUserId() {
     return userId;
@@ -43,6 +54,7 @@ public class LeavePO {
   @Override
   public String toString() {
     final StringBuilder sb = new StringBuilder("LeavePO{");
+    sb.append("leaveId=").append(leaveId);
     sb.append("userId=").append(userId);
     sb.append(", message='").append(message).append('\'');
     sb.append(", leaveStatus=").append(leaveStatus);

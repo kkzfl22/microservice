@@ -3,6 +3,8 @@ package com.liujun.microservice.ddd.demo.application.service;
 import com.liujun.microservice.ddd.demo.domain.user.entity.UserinfoDO;
 import com.liujun.microservice.ddd.demo.domain.user.service.UserInfoDomainService;
 import com.liujun.microservice.ddd.demo.infrastructure.common.api.ApiResonse;
+import com.liujun.microservice.ddd.demo.interfaces.assembler.UserInfoDTOAssembler;
+import com.liujun.microservice.ddd.demo.interfaces.dto.UserInfoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +32,8 @@ public class LoginApplicationService {
     if (null == userinfoDOResult) {
       rs = ApiResonse.fail("登录失败，用户名或者密码失败");
     } else {
-      rs = ApiResonse.ok(userinfoDOResult);
+      UserInfoDTO userInfoDTO = UserInfoDTOAssembler.toDTO(userinfoDOResult);
+      rs = ApiResonse.ok(userInfoDTO);
     }
 
     return rs;

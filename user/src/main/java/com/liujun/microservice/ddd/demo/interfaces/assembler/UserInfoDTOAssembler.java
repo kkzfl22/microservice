@@ -4,7 +4,7 @@ import com.liujun.microservice.ddd.demo.domain.user.entity.UserinfoDO;
 import com.liujun.microservice.ddd.demo.interfaces.dto.UserInfoDTO;
 
 /** 用户信息的转换类 */
-public class UserInfoAssembler {
+public class UserInfoDTOAssembler {
 
   /**
    * 转换为领域的模型
@@ -27,8 +27,9 @@ public class UserInfoAssembler {
    */
   public static UserInfoDTO toDTO(UserinfoDO userinfoDO) {
     UserInfoDTO userinfoDTO = new UserInfoDTO();
+    userinfoDTO.setUserId(userinfoDO.getUserId());
     userinfoDTO.setUserName(userinfoDO.getUserName());
-    userinfoDO.setPassword(userinfoDO.getPassword());
+
     return userinfoDTO;
   }
 }

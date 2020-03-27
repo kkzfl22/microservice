@@ -20,17 +20,26 @@ public interface LeaveRepository {
   boolean save(LeavePO leavePO);
 
   /**
+   * 数据修改操作
+   *
+   * @param leavePO
+   * @return
+   */
+  boolean updateStatus(LeavePO leavePO);
+
+  /**
    * 查询操作
    *
-   * @param leavePO 请假查询条件
+   * @param leaveId 请假的id
    * @return 结果
    */
-  List<LeavePO> query(LeavePO leavePO);
+  LeavePO queryById(int leaveId);
 
   /**
    * 执行数据数据库删除操作
-   * @param leavePo 数据库操作实体
+   *
+   * @param leaveId 请假的id
    * @return 结果
    */
-  boolean delete(LeavePO leavePo);
+  boolean deleteById(int leaveId);
 }

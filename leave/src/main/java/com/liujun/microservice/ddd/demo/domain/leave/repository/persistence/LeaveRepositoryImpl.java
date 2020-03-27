@@ -30,11 +30,36 @@ public class LeaveRepositoryImpl implements LeaveRepository {
     return false;
   }
 
-  public List<LeavePO> query(LeavePO leavePO) {
-    return leaveDAO.query(leavePO);
+  public boolean updateStatus(LeavePO leavePO) {
+
+    int updRsp = leaveDAO.updateStatus(leavePO);
+
+    if (updRsp > 0) {
+      return true;
+    }
+
+    return false;
   }
 
-  public boolean delete(LeavePO leavePo) {
+  public LeavePO queryById(int leaveId) {
+    LeavePO leaveQuery = new LeavePO();
+    leaveQuery.setLeaveId(leaveId);
+    List<LeavePO> dataList = leaveDAO.query(leaveQuery);
+
+    if (null != dataList && !dataList.isEmpty()) {
+      return dataList.get(0);
+    }
+    return null;
+  }
+
+  public boolean deleteById(int leaveId) {
+    LeavePO leaveDelete = new LeavePO();
+    leaveDelete.setLeaveId(leaveId);
+    int delRsp = leaveDAO.delete(leaveDelete);
+
+    if (delRsp > 0) {
+      return true;
+    }
     return false;
   }
 }

@@ -14,7 +14,7 @@ public class LeavePOAssembler {
 
   public static LeavePO toPO(LeaveDO doData) {
     LeavePO datapo = new LeavePO();
-
+    datapo.setLeaveId(doData.getLeaveId());
     datapo.setUserId(doData.getUserId());
     datapo.setMessage(doData.getMessage());
     datapo.setLeaveStatus(doData.getStatus().getStatus());
@@ -23,6 +23,7 @@ public class LeavePOAssembler {
 
   public static LeaveDO toDO(LeavePO dataPO) {
     LeaveDO leaveToPo = new LeaveDO();
+    leaveToPo.setLeaveId(dataPO.getLeaveId());
     leaveToPo.setUserId(dataPO.getUserId());
     leaveToPo.setStatus(LeaveStatus.parse(dataPO.getLeaveStatus()));
     leaveToPo.setMessage(dataPO.getMessage());

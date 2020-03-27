@@ -1,4 +1,4 @@
-package com.liujun.microservice.ddd.demo.domain.leave;
+package com.liujun.microservice.ddd.demo;
 
 import org.hamcrest.Matchers;
 import org.junit.Assert;

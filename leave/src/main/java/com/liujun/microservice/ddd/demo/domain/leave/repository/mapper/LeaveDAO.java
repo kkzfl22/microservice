@@ -20,6 +20,14 @@ public interface LeaveDAO {
   int insert(LeavePO leavePO);
 
   /**
+   * 数据修改操作
+   *
+   * @param leavePO 请假信息
+   * @return 操作
+   */
+  int updateStatus(LeavePO leavePO);
+
+  /**
    * 查询操作
    *
    * @param leavePO 请假查询条件

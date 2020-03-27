@@ -1,6 +1,6 @@
 package com.liujun.microservice.ddd.demo.domain.leave.repository.persistence;
 
-import com.liujun.microservice.ddd.demo.domain.leave.TestParent;
+import com.liujun.microservice.ddd.demo.TestParent;
 import com.liujun.microservice.ddd.demo.domain.leave.constant.LeaveStatus;
 import com.liujun.microservice.ddd.demo.domain.leave.repository.facade.LeaveRepository;
 import com.liujun.microservice.ddd.demo.domain.leave.repository.po.LeavePO;
@@ -11,8 +11,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.List;
 
 /**
  * 测试当前进行请假的数据库操作的服务
@@ -31,15 +29,23 @@ public class TestLeaveRepositoryImpl extends TestParent {
     leavePO.setLeaveStatus(LeaveStatus.PASS.getStatus());
     leavePO.setMessage(RandomStringUtils.randomAlphabetic(10));
     leavePO.setUserId(RandomUtils.nextInt());
+    leavePO.setLeaveId(RandomUtils.nextInt());
     leaveRepository.save(leavePO);
   }
 
   @Test
+  public void update() {
+    LeavePO updatePO = new LeavePO();
+    updatePO.setLeaveStatus(LeaveStatus.PASS.getStatus());
+    updatePO.setLeaveId(RandomUtils.nextInt());
+    boolean updRsp = leaveRepository.updateStatus(leavePO);
+    Assert.assertEquals(true, updRsp);
+  }
+
+  @Test
   public void runQuery() {
-    LeavePO query = new LeavePO();
-    query.setUserId(leavePO.getUserId());
-    List<LeavePO> data = leaveRepository.query(query);
-    LeavePO dataItem = data.get(0);
+
+    LeavePO dataItem = leaveRepository.queryById(leavePO.getLeaveId());
 
     Assert.assertEquals(dataItem.getUserId(), leavePO.getUserId());
     Assert.assertEquals(dataItem.getMessage(), leavePO.getMessage());
@@ -48,6 +54,7 @@ public class TestLeaveRepositoryImpl extends TestParent {
 
   @After
   public void clean() {
-    leaveRepository.delete(leavePO);
+    boolean deleteRsp = leaveRepository.deleteById(leavePO.getLeaveId());
+    Assert.assertEquals(true, deleteRsp);
   }
 }

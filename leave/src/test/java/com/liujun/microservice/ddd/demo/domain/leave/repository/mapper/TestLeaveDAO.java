@@ -1,8 +1,7 @@
 package com.liujun.microservice.ddd.demo.domain.leave.repository.mapper;
 
-import com.liujun.microservice.ddd.demo.domain.leave.TestParent;
+import com.liujun.microservice.ddd.demo.TestParent;
 import com.liujun.microservice.ddd.demo.domain.leave.constant.LeaveStatus;
-import com.liujun.microservice.ddd.demo.domain.leave.repository.facade.LeaveRepository;
 import com.liujun.microservice.ddd.demo.domain.leave.repository.po.LeavePO;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
@@ -25,6 +24,7 @@ public class TestLeaveDAO extends TestParent {
   @Before
   public void runSave() {
     leavePO = new LeavePO();
+    leavePO.setLeaveId(RandomUtils.nextInt());
     leavePO.setLeaveStatus(LeaveStatus.PASS.getStatus());
     leavePO.setMessage(RandomStringUtils.randomAlphabetic(10));
     leavePO.setUserId(RandomUtils.nextInt());
@@ -32,9 +32,19 @@ public class TestLeaveDAO extends TestParent {
   }
 
   @Test
+  public void update() {
+
+    LeavePO updateData = new LeavePO();
+    updateData.setLeaveId(leavePO.getLeaveId());
+    updateData.setLeaveStatus(LeaveStatus.INIT.getStatus());
+    int dataUpd = leaveDAO.updateStatus(updateData);
+    Assert.assertEquals(1, dataUpd);
+  }
+
+  @Test
   public void runQuery() {
     LeavePO query = new LeavePO();
-    query.setUserId(leavePO.getUserId());
+    query.setLeaveId(leavePO.getLeaveId());
     List<LeavePO> data = leaveDAO.query(query);
     LeavePO dataItem = data.get(0);
 

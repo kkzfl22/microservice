@@ -9,6 +9,9 @@ import com.liujun.microservice.ddd.demo.domain.leave.constant.LeaveStatus;
  */
 public class LeaveDO {
 
+  /** 请假的主键的id */
+  private Integer leaveId;
+
   /** 用户信息 */
   private Integer userId;
 
@@ -17,6 +20,14 @@ public class LeaveDO {
 
   /** 请假的状态 */
   private LeaveStatus status;
+
+  public Integer getLeaveId() {
+    return leaveId;
+  }
+
+  public void setLeaveId(Integer leaveId) {
+    this.leaveId = leaveId;
+  }
 
   public Integer getUserId() {
     return userId;
@@ -45,6 +56,7 @@ public class LeaveDO {
   @Override
   public String toString() {
     final StringBuilder sb = new StringBuilder("LeaveDO{");
+    sb.append("leaveId=").append(leaveId);
     sb.append("userId=").append(userId);
     sb.append(", message='").append(message).append('\'');
     sb.append(", status=").append(status);
